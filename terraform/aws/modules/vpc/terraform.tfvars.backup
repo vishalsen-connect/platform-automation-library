@@ -1,0 +1,27 @@
+region_name      = "us-east-1"
+environment      = "Staging"
+vpc_cidr_block   = "10.20.0.0/16"
+
+public_subnets = {
+  "us-east-1a" = "10.20.0.0/24"
+  "us-east-1b" = "10.20.2.0/24"
+}
+
+private_subnets = {
+  "us-east-1a" = "10.20.1.0/24"
+  "us-east-1b" = "10.20.3.0/24"
+}
+
+sg_ingress_rules = [
+  { port = 22,  protocol = "tcp", cidr_block = "0.0.0.0/0", description = "SSH Access" },
+  { port = 80,  protocol = "tcp", cidr_block = "0.0.0.0/0", description = "HTTP Access" }
+]
+
+# Optional (default already allows all outbound)
+sg_egress_rules = [
+  { port = 0, protocol = "-1", cidr_block = "0.0.0.0/0", description = "Allow All Outbound" }
+]
+
+# Gateway options
+create_internet_gateway = false
+create_nat_gateway      = false

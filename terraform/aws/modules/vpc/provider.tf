@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~>6.20"
+    }
+  }
+}
+
+provider "aws" {
+  region = var.region_name
+
+  default_tags {
+    tags = {
+      "Application" = "Sample Application"
+      "ManagedBy"   = "Terragrunt"
+    }
+  }
+}
